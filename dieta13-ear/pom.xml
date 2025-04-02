@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.uib.dieta13</groupId>
+        <artifactId>dieta13</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>dieta13-ear</artifactId>
+    <packaging>ear</packaging>
+    <name>dieta77 ear</name>
+    <description>dieta77 ear</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>es.uib.dieta13</groupId>
+            <artifactId>dieta13-persistence</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.uib.dieta13</groupId>
+            <artifactId>dieta13-ejb</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>es.uib.dieta13</groupId>
+            <artifactId>dieta13-web</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <ejbModule>
+                            <groupId>es.uib.dieta13</groupId>
+                            <artifactId>dieta13-ejb</artifactId>
+                            <bundleFileName>dieta13-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>es.uib.dieta13</groupId>
+                            <artifactId>dieta13-web</artifactId>
+                            <contextRoot>/dieta13</contextRoot>
+                            <bundleFileName>dieta13-web.war</bundleFileName>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
